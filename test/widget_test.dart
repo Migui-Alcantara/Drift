@@ -16,7 +16,8 @@ void main() {
     await tester.tap(find.text('Get Started'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Your session'), findsOneWidget);
-    expect(find.text('Choose a scene'), findsOneWidget);
+    expect(find.text('Polaroids of Summer'), findsOneWidget);
+    expect(find.text('Working'), findsOneWidget);
+    expect(find.text('1/4'), findsOneWidget);
   });
 }
