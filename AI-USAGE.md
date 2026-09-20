@@ -51,7 +51,11 @@ I changed a bit of the content and styling to match my own Drift mockup and desi
 **Being honest about using AI a lot does not cost you marks.** This section
 rewards an accurate account, not a small one.
 
+---
+
 ### 2. Where the AI got it wrong (25 points)
+
+In progress...
 
 Three times the AI gave you something wrong, unsafe, out of date, or just worse
 than what you did instead. For each one: what it gave you, what was wrong with
@@ -62,6 +66,8 @@ is not a skill. Catching bad code is. If you write that the AI was never wrong,
 this section scores zero, so do not be tempted.
 
 ### 3. Who wrote what (30 points)
+
+In progress...
 
 This is the 80 percent rule, made checkable.
 
