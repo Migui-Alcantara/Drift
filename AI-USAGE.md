@@ -6,7 +6,7 @@
 
 At least six entries. One per real use. Each entry says:
 
-### 1. Flutter navigation structure
+- Flutter navigation structure
 
 **Date:** September 19, 2026  
 **Tool:** ChatGPT
@@ -28,7 +28,7 @@ I adapted the structure into my own `HomeScreen` and separate the screen files f
 
 ---
 
-### 2. Initial Flutter screen structure
+- Initial Flutter screen structure
 
 **Date:** September 19, 2026
 **Tool:** ChatGPT
