@@ -34,7 +34,7 @@
 - Kept the first week focused on the UI structure and navigation instead of implementing every feature at once. This gives the project a working foundation before adding state, audio, timers, and persistence.
 - Used the existing design system and mockup as the main reference for the initial UI.
 
-**Hours spent, roughly:** 6–7 hours
+**Hours spent, roughly:** 8–10 hours
 
 ## **Next week I will:**
 
