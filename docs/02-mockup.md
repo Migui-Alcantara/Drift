@@ -42,7 +42,7 @@ The wireframes show the structure of the Drift interface and the main flow betwe
 
 The user starts at the main session screen and can open the Scenes, Sounds, Music, or To-do panels using the bottom navigation. These panels appear over the Home screen and can be closed by tapping outside the panel or dragging the panel downward.
 
-[View the complete Drift mockup PDF](assets/Alcantara_Wireframe_Drift.pdf)
+[View the complete Drift mockup PDF](assets/Wireframe_Drift.pdf)
 
 ## Screens
 
