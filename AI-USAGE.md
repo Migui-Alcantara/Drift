@@ -2,11 +2,11 @@
 
 ## The three sections of `AI-USAGE.md`
 
-### 1. How I used AI (35 points)
+## 1. How I used AI (35 points)
 
 At least six entries. One per real use. Each entry says:
 
-- Flutter navigation structure
+### 1. Flutter navigation structure
 
 **Date:** September 19, 2026  
 **Tool:** ChatGPT
@@ -28,7 +28,7 @@ I adapted the structure into my own `HomeScreen` and separate the screen files f
 
 ---
 
-- Initial Flutter screen structure
+### 2. Initial Flutter screen structure
 
 **Date:** September 19, 2026
 **Tool:** ChatGPT
