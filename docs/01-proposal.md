@@ -17,17 +17,17 @@ get into and stay in a productive headspace. Specifically people who are already
 cozy aesthetics because they know the vibe they want, they just don't have one app that does it all.
 
 ## Core features
-Background scenes — Users can choose from different cozy visual scenes to create a relaxing atmosphere while they study or work.
-Ambient sound mixer — Users can mix different ambient sounds, such as rain or other background noises, and adjust their individual volume levels.
-Music player — Users can play and control music while working, including basic controls such as play, pause, and changing tracks.
-Pomodoro timer — A focus timer that uses the Pomodoro technique, allowing users to work for a set amount of time followed by a short break.
-To-do list — Users can add tasks, mark them as completed, and keep track of what they need to accomplish during their study or work session.
+- Background scenes — Users can choose from different cozy visual scenes to create a relaxing atmosphere while they study or work.
+- Ambient sound mixer — Users can mix different ambient sounds, such as rain or other background noises, and adjust their individual volume levels.
+- Music player — Users can play and control music while working, including basic controls such as play, pause, and changing tracks.
+- Pomodoro timer — A focus timer that uses the Pomodoro technique, allowing users to work for a set amount of time followed by a short break.
+- To-do list — Users can add tasks, mark them as completed, and keep track of what they need to accomplish during their study or work session.
 
 ## Out of scope, and why
-User accounts and social features — Drift is intended to be a personal focus tool, so accounts, profiles, following, and social features are unnecessary for the project's core purpose.
-Online collaboration — Real-time collaboration and shared task lists would add significant complexity without being necessary for an individual study session.
-Advanced music streaming — Drift will not attempt to become a full music-streaming service. Music playback will be limited to the functionality needed for the focus experience.
-Highly customizable scenes — Users will choose from the scenes provided by the app rather than having a full scene editor. This keeps the project focused on the experience instead of creating a separate customization system.
+- User accounts and social features — Drift is intended to be a personal focus tool, so accounts, profiles, following, and social features are unnecessary for the project's core purpose.
+- Online collaboration — Real-time collaboration and shared task lists would add significant complexity without being necessary for an individual study session.
+- Advanced music streaming — Drift will not attempt to become a full music-streaming service. Music playback will be limited to the functionality needed for the focus experience.
+- Highly customizable scenes — Users will choose from the scenes provided by the app rather than having a full scene editor. This keeps the project focused on the experience instead of creating a separate customization system.
 
 
 ## Data the app remembers, and where it is saved
