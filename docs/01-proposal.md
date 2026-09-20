@@ -41,7 +41,20 @@ The project will use local device storage rather than requiring a user account. 
 - Audio playback — Audio can be more complicated than the other features because of platform differences, playback state, and handling play/pause behavior. A small prototype will be used early to make sure the required audio functionality is practical.
 - State management — Keeping the selected scene, music state, timer, and to-do items consistent across different screens could become difficult as the app grows. The implementation will be kept simple and tested as features are added.
 
-## Changes since the last version
-- September 2026 — Persistence clarified: Data persistence was added as an explicit part of the plan. The app will prioritize saving essential local data such as to-do items instead of depending on a cloud backend.
-- September 2026 — Audio risk identified: Audio playback was identified as a development risk because it introduces additional state and platform considerations. A prototype will be used to test this before committing to more complex audio functionality.
-- September 2026 — Interface refined: The navigation and screen structure were clarified around the main Drift experience, with scenes, music/sounds, and the to-do list forming the main areas of the app.
+## Changes since last version
+
+### Persistence
+The revised proposal now specifies how Drift will remember user data between sessions. `shared_preferences` will be used to store tasks, timer settings, and user preferences.
+
+### Implementation risks
+The risks were clarified based on my progress in Flutter. Audio playback and mixing were identified as a potential implementation challenge, while managing state across the different parts of the app was also identified as another risk.
+
+### Core features
+The five core features remain prioritized as the MVP:
+- Background scenes
+- Ambient sound mixer
+- Music player
+- Pomodoro timer
+- To-do list
+
+The revised proposal keeps the original scope while providing more specific details about how the features will be implemented and what parts may require additional development time.
