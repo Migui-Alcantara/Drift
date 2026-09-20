@@ -6,14 +6,14 @@
   New here? Read START-HERE.md first. Delete this comment when you are done.
 -->
 
-# App Name
+# Drift
 
-> One sentence: what this app does, and who it is for.
+> Drift is a calming productivity and focus app for users who want to relax, stay focused, and organize their tasks in one place.
 
 **Live demo:** https://YOURUSERNAME.github.io/YOUR-REPO/ <!-- GitHub Pages is set up already; replace if you host elsewhere -->
 **Demo video:** `docs/demo.mp4` (link it here once it exists)
 **Course:** Applications Development and Emerging Technologies (6ADET), Holy Angel University
-**Author:** Your Name
+**Author:** Miguel Luis M. Alcantara
 
 This repository lives in the author's own GitHub account and is public on
 purpose. There is no `student.json` here and there should not be one: see
@@ -39,9 +39,10 @@ A repo without screenshots reads as abandoned, whatever the code says.
 
 Three to five bullets. What can a user actually do?
 
-- ...
-- ...
-- ...
+- Provides a calming home screen designed for focus and productivity.
+- Allows users to navigate between scenes, ambient sounds, music, and a to-do list.
+- Provides separate screens for choosing and managing the different parts of a focus session.
+- Uses a simple, dark visual design intended to create a relaxing atmosphere.
 
 ## Built with
 
@@ -49,40 +50,27 @@ Three to five bullets. What can a user actually do?
 | --- | --- |
 | Framework | Flutter (Dart) |
 | State | `setState` / provider / riverpod (say which) |
-| Storage | shared_preferences / Hive / Drift / Firebase / Supabase / other |
-| Other packages | list the ones that matter, with a word on why |
+| Storage | shared_preferences |
+| Other packages | device_preview — used to preview and test the app across different device sizes and orientations |
 
 ## Running it yourself
 
 ```bash
 flutter pub get
-cp .env.example .env      # only if your app needs keys, see below
 flutter run -d web-server --web-port 8080
 ```
 
-Then open http://localhost:8080. Requires Flutter (run `flutter --version` and
-put yours here).
+Then open http://localhost:8080. Requires Flutter 3.44.7
 
 ### Environment variables
 
-This project reads its configuration from a `.env` file that is **not** in the
-repository. Copy `.env.example`, fill in your own values, and never commit the
-result.
+Drift does not currently require any environment variables or API keys.
 
-| Variable | What it is | Where to get one |
-| --- | --- | --- |
-| `EXAMPLE_API_KEY` | ... | ... |
+If API keys or other secrets are needed in a future feature, they will be stored in a local .env file and will not be committed to the repository.
 
 ## Privacy and secrets
 
-Required section. Two or three honest sentences:
-
-- What personal data this app stores, if any, and where it goes.
-- Where the secrets live (`.env` locally, repository secrets in the deploy
-  workflow) and what protects the data on the service side (Firestore rules,
-  Supabase RLS, or "nothing leaves the device").
-- Confirm that all sample data, screenshots and the video contain **no real
-  personal information**.
+Drift is currently designed as a local single-user application and does not send personal data to an external service. Local data persistence is planned to use shared_preferences on the user's device. No real personal information is used in the app's sample data, screenshots, or demo materials.
 
 ## Project documentation
 
@@ -98,22 +86,22 @@ Required section. Two or three honest sentences:
 
 ## Status and what is next
 
-Be honest. What works, what is half done, what you would build next. An honest
-"known issues" section reads better than a claim the reader disproves in thirty
-seconds.
+The main layout and navigation structure of Drift have been implemented, including the Home, Scenes, Sounds, Music, and To-do sections.
+
+The current version focuses on establishing the app's interface and screen structure. The next stages will focus on implementing the functionality behind these screens, including scene selection, sound and music playback, the focus timer, to-do interactions, and local data persistence.
+
+Known areas that still need implementation or testing include audio playback, persistence, and the remaining interactive features.
 
 ## Credits
 
 - Packages: see `pubspec.yaml`
 - Assets, icons, 3D models, sounds: name the author and the licence for each
-- People who helped, and how
+- People who helped: None.
 
 ## AI use
 
-If you used AI tools while building this, say so in a sentence or two and say
-where. Honest disclosure is the standard in this course and increasingly outside
-it.
+AI tools were used during development to help with coding assistance, debugging, explanations, and documentation. The final implementation and project decisions were reviewed and adapted as part of the development process.
 
 ## Licence
 
-MIT, see [LICENSE](LICENSE). Change it if you want different terms.
+MIT, see [LICENSE](LICENSE).
