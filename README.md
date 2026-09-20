@@ -97,7 +97,7 @@ Known areas that still need implementation or testing include audio playback, pe
 - People who helped: None.
 
 ## AI use
-
+[![Made with AI](https://img.shields.io/badge/Made_with-AI_assistance-blue)](AI-USAGE.md)
 AI tools were used during development to help with coding assistance, debugging, explanations, and documentation. The final implementation and project decisions were reviewed and adapted as part of the development process.
 
 ## Licence
