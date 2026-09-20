@@ -4,8 +4,6 @@
 
 ## 1. How I used AI (35 points)
 
-At least six entries. One per real use. Each entry says:
-
 ### 1. Flutter navigation structure
 
 **Date:** September 19, 2026  
