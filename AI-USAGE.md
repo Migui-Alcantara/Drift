@@ -48,8 +48,6 @@ I changed a bit of the content and styling to match my own Drift mockup and desi
 **Commit:**  
 [Updated Drift each screen](https://github.com/Migui-Alcantara/Drift/commit/afffe922d5ba02dc297ec1322f11b928df164f64)
 
-**Being honest about using AI a lot does not cost you marks.** This section
-rewards an accurate account, not a small one.
 
 ---
 
