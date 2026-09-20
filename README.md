@@ -5,9 +5,9 @@
 
   New here? Read START-HERE.md first. Delete this comment when you are done.
 -->
-[![Made with AI](https://img.shields.io/badge/Made_with-AI_assistance-blue)](AI-USAGE.md)
-# Drift
 
+# Drift
+[![Made with AI](https://img.shields.io/badge/Made_with-AI_assistance-blue)](AI-USAGE.md)
 > Drift is a calming productivity and focus app for users who want to relax, stay focused, and organize their tasks in one place.
 
 **Live demo:** https://YOURUSERNAME.github.io/YOUR-REPO/ <!-- GitHub Pages is set up already; replace if you host elsewhere -->
