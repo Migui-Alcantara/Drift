@@ -6,15 +6,47 @@
 
 At least six entries. One per real use. Each entry says:
 
-- Date: September 19, 2026
-- Tool: ChatGPT
-- What I asked it for: Help designing the Flutter navigation structure for Drift based on my mockup, specifically how the Scenes, Sounds, Music, and To-do panels should open while keeping the Home screen underneath.
-- what it gave back
-- what you kept, what you changed, and why
-- **a link to the commit where that work landed**
+### 1. Flutter navigation structure
 
-That last line is not optional. An entry with no commit behind it earns nothing,
-because there is no way to tell it happened.
+**Date:** September 19, 2026  
+**Tool:** ChatGPT
+
+**What I asked for:**  
+Help designing the Flutter navigation structure for Drift based on my mockup, specifically how the Scenes, Sounds, Music, and To-do panels should open while keeping the Home screen underneath.
+
+**What it gave back:**  
+ChatGPT gave a Flutter modal bottom sheets instead of navigating to completely separate screens.
+
+**What I kept:**  
+I kept the bottom-sheet approach because it matched the interaction shown in my mockup.
+
+**What I changed:**  
+I adapted the structure into my own `HomeScreen` and separate the screen files for each panel.
+
+**Commit:**  
+[Update Drift welcome and home screens](https://github.com/Migui-Alcantara/Drift/commit/af314e2616dddca4d4404e7c7f9d7353165e8e53#diff-935e56a557f0ab902a679f47de66345d9f47058bccb96f870e6383d19e2c86dd)
+
+---
+
+### 2. Initial Flutter screen structure
+
+**Date:** September 19, 2026
+**Tool:** ChatGPT
+
+**What I asked for:**  
+Help creating the initial Flutter screen structure for Drift, including the Welcome screen, Home screen, Scenes, Sounds, Music, and To-do screens.
+
+**What it gave back:**  
+ChatGPT provided example Flutter code and suggested organizing the screens into separate files.
+
+**What I kept:**  
+I kept the general file structure and some of the basic Flutter widget patterns.
+
+**What I changed:**  
+I changed a bit of the content and styling to match my own Drift mockup and design system but honestly it was good as it is.
+
+**Commit:**  
+[Updated Drift each screen](https://github.com/Migui-Alcantara/Drift/commit/afffe922d5ba02dc297ec1322f11b928df164f64)
 
 **Being honest about using AI a lot does not cost you marks.** This section
 rewards an accurate account, not a small one.
