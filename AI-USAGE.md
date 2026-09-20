@@ -49,7 +49,7 @@ I changed a bit of the content and styling to match my own Drift mockup and desi
 
 ---
 
-### 2. Where the AI got it wrong (25 points)
+## 2. Where the AI got it wrong (25 points)
 
 In progress...
 
@@ -61,7 +61,7 @@ This section is worth real points because it is the hard part. Taking good code
 is not a skill. Catching bad code is. If you write that the AI was never wrong,
 this section scores zero, so do not be tempted.
 
-### 3. Who wrote what (30 points)
+## 3. Who wrote what (30 points)
 
 In progress...
 
