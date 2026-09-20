@@ -4,7 +4,7 @@ The Drift design system defines the visual language and reusable UI components u
 
 The complete visual design system is available below:
 
-[View the Drift Design System (PDF)](assets/Design%System_Drift.pdf)
+[View the Drift Design System (PDF)](assets/Design_System_Drift.pdf)
 
 ## Palette
 
