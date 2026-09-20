@@ -1,4 +1,4 @@
-## Week 1 (August 24–30)
+## Week 1 (September 13–20)
 
 ## **Done this week**
 
