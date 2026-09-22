@@ -1,12 +1,70 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-
 import 'scenes_screen.dart';
 import 'sounds_screen.dart';
 import 'music_screen.dart';
 import 'todo_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late DateTime _currentTime;
+  Timer? _clockTimer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _currentTime = DateTime.now();
+
+    _clockTimer = Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) {
+        setState(() {
+          _currentTime = DateTime.now();
+        });
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _clockTimer?.cancel();
+    super.dispose();
+  }
+
+  String _formattedDateTime() {
+    const weekdays = [
+      'Mon',
+      'Tue',
+      'Wed',
+      'Thu',
+      'Fri',
+      'Sat',
+      'Sun',
+    ];
+
+    final weekday = weekdays[_currentTime.weekday - 1];
+
+    int hour = _currentTime.hour;
+    final minute = _currentTime.minute.toString().padLeft(2, '0');
+
+    final period = hour >= 12 ? 'PM' : 'AM';
+
+    if (hour == 0) {
+      hour = 12;
+    } else if (hour > 12) {
+      hour -= 12;
+    }
+
+    return '$weekday, ${_currentTime.month}/${_currentTime.day} · '
+        '$hour:$minute $period';
+  }
 
   void _openPanel(
     BuildContext context,
@@ -31,67 +89,81 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0F1117),
-
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Sat, Jul 11 · 2:45 PM',
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 12,
+              // Top information
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Date and current song
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        _formattedDateTime(),
+                        style: const TextStyle(
+                          color: Colors.white70,
+                          fontSize: 12,
+                        ),
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      const Text(
+                        'Polaroids of Summer',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ),
 
-              const SizedBox(height: 24),
+                  // Timer and session information
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        '24:53',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
 
-              const Text(
-                'Polaroids of Summer',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+                      SizedBox(height: 4),
 
-              const SizedBox(height: 24),
+                      Text(
+                        'Working',
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 14,
+                        ),
+                      ),
 
-              const Text(
-                '24:53',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 48,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+                      SizedBox(height: 2),
 
-              const SizedBox(height: 8),
-
-              const Text(
-                'Working',
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 14,
-                ),
-              ),
-
-              const SizedBox(height: 8),
-
-              const Text(
-                '1/4',
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 12,
-                ),
+                      Text(
+                        '1/4',
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
 
               const Spacer(),
 
+              // Bottom navigation
               Container(
                 padding: const EdgeInsets.symmetric(
                   vertical: 12,
@@ -110,21 +182,18 @@ class HomeScreen extends StatelessWidget {
                       'Scenes',
                       const ScenesScreen(),
                     ),
-
                     _navItem(
                       context,
                       Icons.water_drop,
                       'Sounds',
                       const SoundsScreen(),
                     ),
-
                     _navItem(
                       context,
                       Icons.music_note,
                       'Music',
                       const MusicScreen(),
                     ),
-
                     _navItem(
                       context,
                       Icons.check_box,
@@ -159,9 +228,7 @@ class HomeScreen extends StatelessWidget {
             color: Colors.white70,
             size: 22,
           ),
-
           const SizedBox(height: 4),
-
           Text(
             label,
             style: const TextStyle(
