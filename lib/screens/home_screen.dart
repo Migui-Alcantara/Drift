@@ -13,8 +13,29 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // Date and time
   late DateTime _currentTime;
   Timer? _clockTimer;
+
+  // Pomodoro timer
+  Timer? _pomodoroTimer;
+
+  int _remainingSeconds = 25 * 60;
+
+  // Work = true, Break = false
+  bool _isWorking = true;
+
+  bool _isRunning = false;
+
+  // Current Pomodoro session
+  int _currentSession = 1;
+
+  // Number of work sessions
+  final int _totalSessions = 4;
+
+  // Default timer durations
+  final int _workMinutes = 25;
+  final int _breakMinutes = 5;
 
   @override
   void initState() {
@@ -22,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     _currentTime = DateTime.now();
 
+    // Update the date and time every second.
     _clockTimer = Timer.periodic(
       const Duration(seconds: 1),
       (timer) {
@@ -35,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void dispose() {
     _clockTimer?.cancel();
+    _pomodoroTimer?.cancel();
     super.dispose();
   }
 
@@ -47,22 +70,22 @@ class _HomeScreenState extends State<HomeScreen> {
       'Fri',
       'Sat',
       'Sun',
-    ]; 
+    ];
 
     const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
 
     final weekday = weekdays[_currentTime.weekday - 1];
     final month = months[_currentTime.month - 1];
@@ -80,7 +103,103 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return '$weekday, $month ${_currentTime.day} · '
         '$hour:$minute $period';
-}
+  }
+
+  String _formattedTimer() {
+    final minutes = (_remainingSeconds ~/ 60).toString().padLeft(2, '0');
+    final seconds = (_remainingSeconds % 60).toString().padLeft(2, '0');
+
+    return '$minutes:$seconds';
+  }
+
+  double _timerProgress() {
+    final totalSeconds = _isWorking
+        ? _workMinutes * 60
+        : _breakMinutes * 60;
+
+    return _remainingSeconds / totalSeconds;
+  }
+
+  void _toggleTimer() {
+    if (_isRunning) {
+      _pomodoroTimer?.cancel();
+
+      setState(() {
+        _isRunning = false;
+      });
+    } else {
+      setState(() {
+        _isRunning = true;
+      });
+
+      _pomodoroTimer = Timer.periodic(
+        const Duration(seconds: 1),
+        (timer) {
+          if (_remainingSeconds > 0) {
+            setState(() {
+              _remainingSeconds--;
+            });
+          } else {
+            _moveToNextPhase();
+          }
+        },
+      );
+    }
+  }
+
+  void _moveToNextPhase() {
+    _pomodoroTimer?.cancel();
+
+    setState(() {
+      if (_isWorking) {
+        // Work session finished.
+        // Move to the 5-minute break.
+        _isWorking = false;
+        _remainingSeconds = _breakMinutes * 60;
+      } else {
+        // Break finished.
+        // Move to the next work session.
+        if (_currentSession < _totalSessions) {
+          _currentSession++;
+          _isWorking = true;
+          _remainingSeconds = _workMinutes * 60;
+        } else {
+          // All four sessions are finished.
+          _isRunning = false;
+          _remainingSeconds = _workMinutes * 60;
+          _currentSession = 1;
+          _isWorking = true;
+        }
+      }
+    });
+
+    // Continue automatically if there are still sessions left.
+    if (_isRunning) {
+      _pomodoroTimer = Timer.periodic(
+        const Duration(seconds: 1),
+        (timer) {
+          if (_remainingSeconds > 0) {
+            setState(() {
+              _remainingSeconds--;
+            });
+          } else {
+            _moveToNextPhase();
+          }
+        },
+      );
+    }
+  }
+
+  void _resetTimer() {
+    _pomodoroTimer?.cancel();
+
+    setState(() {
+      _remainingSeconds = _workMinutes * 60;
+      _isWorking = true;
+      _isRunning = false;
+      _currentSession = 1;
+    });
+  }
 
   void _openPanel(
     BuildContext context,
@@ -129,48 +248,99 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       const SizedBox(height: 8),
 
-                      const Text(
-                        'Polaroids of Summer',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.music_note,
+                            color: Colors.white70,
+                            size: 16,
+                          ),
+                          const SizedBox(width: 4),
+                          const Text(
+                            'Polaroids of Summer',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
 
-                  // Timer and session information
-                  const Column(
+                  // Pomodoro timer
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        '24:53',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          SizedBox(
+                            width: 140,
+                            height: 140,
+                            child: CircularProgressIndicator(
+                              value: _timerProgress(),
+                              strokeWidth: 8,
+                              backgroundColor: Colors.white12,
+                              valueColor:
+                                  const AlwaysStoppedAnimation<Color>(
+                                Color(0xFFA78BFA),
+                              ),
+                            ),
+                          ),
+
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                onPressed: _toggleTimer,
+                                icon: Icon(
+                                  _isRunning
+                                      ? Icons.pause
+                                      : Icons.play_arrow,
+                                ),
+                                color: Colors.white,
+                                iconSize: 20,
+                              ),
+
+                              Text(
+                                _formattedTimer(),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+
+                              Text(
+                                _isWorking ? 'Working' : 'Break',
+                                style: const TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
 
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
 
                       Text(
-                        'Working',
-                        style: TextStyle(
-                          color: Colors.white70,
-                          fontSize: 14,
-                        ),
-                      ),
-
-                      SizedBox(height: 2),
-
-                      Text(
-                        '1/4',
-                        style: TextStyle(
+                        '$_currentSession/$_totalSessions',
+                        style: const TextStyle(
                           color: Colors.white70,
                           fontSize: 12,
                         ),
+                      ),
+
+                      const SizedBox(height: 4),
+
+                      IconButton(
+                        onPressed: _resetTimer,
+                        icon: const Icon(Icons.refresh),
+                        color: Colors.white,
                       ),
                     ],
                   ),
