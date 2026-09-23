@@ -20,7 +20,7 @@ Drift uses a dark color palette designed to support its cozy, nighttime lo-fi at
 | Error | `#F87171` | Validation and destructive actions |
 | Text | `#FFFFFF` | Body text and text on the background |
 
-The design uses dark mode as part of the app's visual style. The design system also includes a contrast check for the tested text and background combinations. :contentReference[oaicite:1]{index=1}
+The design uses dark mode as part of the app's visual style. The design system also includes a contrast check for the tested text and background combinations.
 
 ## Type scale
 
@@ -32,7 +32,7 @@ Drift uses Nunito for headings and DM Sans for body and caption text.
 | Body | DM Sans | 14 px | Regular | Normal text |
 | Caption | DM Sans | 12 px | Regular | Timestamps and hints |
 
-These typography choices are mapped to Flutter `TextTheme` slots in the design system. :contentReference[oaicite:2]{index=2}
+These typography choices are mapped to Flutter `TextTheme` slots in the design system.
 
 ## Spacing
 
@@ -95,4 +95,4 @@ This makes spacing decisions more consistent and easier to apply while building 
 
 The original design identified reusable components visually. The revised version adds an intended file location, constructor parameters, and screen usage for each component.
 
-This was added because moving from a visual design into Flutter requires clearer implementation details for reusable UI pieces. :contentReference[oaicite:9]{index=9}
+This was added because moving from a visual design into Flutter requires clearer implementation details for reusable UI pieces.
