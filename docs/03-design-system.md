@@ -51,7 +51,7 @@ Additional spacing rules include:
 - Gap between list items: 8 px
 - Gap between sections: 24 px
 
-These values are represented as reusable spacing constants in Flutter. :contentReference[oaicite:3]{index=3} :contentReference[oaicite:4]{index=4}
+These values are represented as reusable spacing constants in Flutter.
 
 ## Components
 
@@ -65,7 +65,7 @@ The design system defines the following reusable components:
 | To-do List Row | `todo_list_row.dart` | `text`, `done`, `onChanged` | To-do |
 | Track State | `track_state.dart` | `title`, `isPlaying`, `onPlay`, `onNext`, `onPrevious` | Music |
 
-These components were given intended file locations, constructor parameters, and screen usage so the visual design can be translated into reusable Flutter widgets. :contentReference[oaicite:5]{index=5}
+These components were given intended file locations, constructor parameters, and screen usage so the visual design can be translated into reusable Flutter widgets.
 
 ## Changes since the last version
 
@@ -73,7 +73,7 @@ These components were given intended file locations, constructor parameters, and
 
 The original design used hand-picked colors for Drift's dark visual style. The revised version assigns these colors to Flutter `ColorScheme` roles and includes `on` colors and a contrast check.
 
-This change was made because building the app showed that the colors needed clearer roles when translated into Flutter. :contentReference[oaicite:6]{index=6}
+This change was made because building the app showed that the colors needed clearer roles when translated into Flutter.
 
 ### Type scale
 
@@ -83,13 +83,13 @@ The original typography choices were retained:
 - DM Sans Regular, 14 px for body text
 - DM Sans Regular, 12 px for captions
 
-The revision maps these choices to Flutter `TextTheme` slots to make their implementation more explicit. :contentReference[oaicite:7]{index=7}
+The revision maps these choices to Flutter `TextTheme` slots to make their implementation more explicit.
 
 ### Spacing
 
 The spacing system was revised into reusable 4, 8, 16, and 24 px tokens. Screen padding, list-item gaps, and section gaps were also defined explicitly.
 
-This makes spacing decisions more consistent and easier to apply while building the app. :contentReference[oaicite:8]{index=8}
+This makes spacing decisions more consistent and easier to apply while building the app.
 
 ### Components
 
