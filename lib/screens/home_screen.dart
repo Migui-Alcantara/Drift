@@ -47,9 +47,25 @@ class _HomeScreenState extends State<HomeScreen> {
       'Fri',
       'Sat',
       'Sun',
-    ];
+    ]; 
+
+    const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
 
     final weekday = weekdays[_currentTime.weekday - 1];
+    final month = months[_currentTime.month - 1];
 
     int hour = _currentTime.hour;
     final minute = _currentTime.minute.toString().padLeft(2, '0');
@@ -62,9 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
       hour -= 12;
     }
 
-    return '$weekday, ${_currentTime.month}/${_currentTime.day} · '
+    return '$weekday, $month ${_currentTime.day} · '
         '$hour:$minute $period';
-  }
+}
 
   void _openPanel(
     BuildContext context,
