@@ -4,6 +4,7 @@ import 'scenes_screen.dart';
 import 'sounds_screen.dart';
 import 'music_screen.dart';
 import 'todo_screen.dart';
+import '../data/todo_task.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,6 +14,99 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+List<TodoTask> _tasks = [
+  TodoTask(text: 'Study Chapter 4'),
+  TodoTask(text: 'Review notes for exam'),
+  TodoTask(text: 'Finish Activity 3')
+];
+
+void _toggleTask(int index) {
+  setState(() {
+    _tasks[index].completed = !_tasks[index].completed;
+  });
+}
+
+void _deleteTask(int index) {
+  setState(() {
+    _tasks.removeAt(index);
+  });
+}
+
+    Future<void> _addTask() async {
+    final controller = TextEditingController();
+
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: const Color(0xFF1E2130),
+          title: const Text(
+            'Add a task',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          content: TextField(
+            controller: controller,
+            autofocus: true,
+            style: const TextStyle(
+              color: Colors.white,
+            ),
+            decoration: InputDecoration(
+              hintText: 'Enter a task...',
+              hintStyle: const TextStyle(
+                color: Colors.white54,
+              ),
+              filled: true,
+              fillColor: const Color(0xFF0F1117),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide.none,
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                'Cancel',
+                style: TextStyle(
+                  color: Colors.white70,
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+              final task = controller.text.trim();
+              if (task.isNotEmpty) {
+                setState(() {
+                  _tasks.add(
+                    TodoTask(
+                      text: task,
+                    ),
+                  );
+                });
+              }
+                
+                Navigator.pop(context);
+              },
+              child: const Text(
+                'Add',
+                style: TextStyle(
+                  color: Color(0xFFA78BFA),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    controller.dispose();
+  }
+  
   // Date and time
   late DateTime _currentTime;
   Timer? _clockTimer;
@@ -384,7 +478,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       context,
                       Icons.check_box,
                       'To-do',
-                      const TodoScreen(),
+                      TodoScreen(
+                        tasks: _tasks,
+                        onToggle: _toggleTask,
+                        onDelete: _deleteTask,
+                        onAdd: _addTask,
+                      ),
                     ),
                   ],
                 ),

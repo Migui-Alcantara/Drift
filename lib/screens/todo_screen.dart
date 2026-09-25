@@ -1,8 +1,25 @@
 import 'package:flutter/material.dart';
+import '../data/todo_task.dart';
 
-class TodoScreen extends StatelessWidget {
-  const TodoScreen({super.key});
+class TodoScreen extends StatefulWidget {
+  final List<TodoTask> tasks;
+  final Function(int) onToggle;
+  final Function(int) onDelete;
+  final Future<void> Function() onAdd;
 
+  const TodoScreen({
+    super.key,
+    required this.tasks,
+    required this.onToggle,
+    required this.onDelete,
+    required this.onAdd,
+  });
+
+  @override
+  State<TodoScreen> createState() => _TodoScreenState();
+}
+
+class _TodoScreenState extends State<TodoScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -27,36 +44,57 @@ class TodoScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            _todoRow('Study Chapter 4'),
-            _todoRow('Review notes for exam'),
-            _todoRow('Finish Activity 3'),
-
-            const SizedBox(height: 4),
-
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: const Color(0xFF0F1117),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: const Row(
-                children: [
-                  Icon(
-                    Icons.add,
-                    color: Color(0xFFA78BFA),
-                  ),
-
-                  SizedBox(width: 12),
-
-                  Text(
-                    'Add a new task...',
+            if (widget.tasks.isEmpty)
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                child: Center(
+                  child: Text(
+                    'No tasks yet.',
                     style: TextStyle(
-                      color: Colors.white70,
+                      color: Colors.white54,
                       fontSize: 14,
                     ),
                   ),
-                ],
+                ),
+              )
+            else
+              ...List.generate(
+                widget.tasks.length,
+                (index) => _todoRow(index),
+              ),
+
+            const SizedBox(height: 4),
+
+            GestureDetector(
+              onTap: () async {
+                await widget.onAdd();
+                setState(() {});
+                },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF0F1117),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: const Row(
+                  children: [
+                    Icon(
+                      Icons.add,
+                      color: Color(0xFFA78BFA),
+                    ),
+
+                    SizedBox(width: 12),
+
+                    Text(
+                      'Add a new task...',
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
 
@@ -80,7 +118,9 @@ class TodoScreen extends StatelessWidget {
     );
   }
 
-  Widget _todoRow(String task) {
+  Widget _todoRow(int index) {
+    final task = widget.tasks[index];
+
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
@@ -90,20 +130,48 @@ class TodoScreen extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Icon(
-            Icons.check_box_outline_blank,
-            color: Color(0xFFA78BFA),
+          GestureDetector(
+            onTap: () {
+              widget.onToggle(index);
+
+              setState(() {});
+            },
+            child: Icon(
+              task.completed
+                  ? Icons.check_box
+                  : Icons.check_box_outline_blank,
+              color: const Color(0xFFA78BFA),
+            ),
           ),
 
           const SizedBox(width: 12),
 
           Expanded(
             child: Text(
-              task,
-              style: const TextStyle(
-                color: Colors.white,
+              task.text,
+              style: TextStyle(
+                color: task.completed
+                    ? Colors.white54
+                    : Colors.white,
                 fontSize: 14,
+                decoration: task.completed
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none,
+                decorationColor: Colors.white54,
               ),
+            ),
+          ),
+
+          IconButton(
+            onPressed: () {
+              widget.onDelete(index);
+
+              setState(() {});
+            },
+            icon: const Icon(
+              Icons.delete_outline,
+              color: Colors.white54,
+              size: 20,
             ),
           ),
         ],
