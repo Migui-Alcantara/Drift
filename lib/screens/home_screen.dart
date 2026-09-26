@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'scenes_screen.dart';
 import 'sounds_screen.dart';
 import 'music_screen.dart';
 import 'todo_screen.dart';
 import '../data/todo_task.dart';
 import '../data/scene.dart';
+import '../data/ambient_sound.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,6 +22,76 @@ List<TodoTask> _tasks = [
   TodoTask(text: 'Review notes for exam'),
   TodoTask(text: 'Finish Activity 3')
 ];
+
+final Set<String> _playingSounds = {};
+final Map<String, double> _soundVolumes = {};
+final Map<String, AudioPlayer> _soundPlayers = {};
+
+Future<void> _toggleSound(String sound) async {
+  final isPlaying = _playingSounds.contains(sound);
+
+  if (isPlaying) {
+    final player = _soundPlayers[sound];
+
+    if (player != null) {
+      await player.pause();
+    }
+
+    setState(() {
+      _playingSounds.remove(sound);
+    });
+
+    return;
+  }
+
+  final ambientSound = ambientSounds.firstWhere(
+    (item) => item.name == sound,
+  );
+
+  AudioPlayer? player = _soundPlayers[sound];
+
+  if (player == null) {
+    player = AudioPlayer();
+
+    await player.setReleaseMode(
+      ReleaseMode.loop,
+    );
+
+    _soundPlayers[sound] = player;
+  }
+
+  final volume = _soundVolumes[sound] ?? 0.5;
+
+  await player.setVolume(volume);
+
+  await player.play(
+    AssetSource(
+      ambientSound.audio.replaceFirst(
+        'assets/',
+        '',
+      ),
+    ),
+  );
+
+  setState(() {
+    _playingSounds.add(sound);
+  });
+}
+
+Future<void> _changeSoundVolume(
+  String sound,
+  double volume,
+) async {
+  setState(() {
+    _soundVolumes[sound] = volume;
+  });
+
+  final player = _soundPlayers[sound];
+
+  if (player != null) {
+    await player.setVolume(volume);
+  }
+}
 
 String _selectedScene = 'Aurora Night';
 
@@ -167,9 +239,13 @@ Scene _getSelectedScene() {
   void dispose() {
     _clockTimer?.cancel();
     _pomodoroTimer?.cancel();
+
+    for (final player in _soundPlayers.values) {
+      player.dispose();
+    }
+
     super.dispose();
   }
-
   String _formattedDateTime() {
     const weekdays = [
       'Mon',
@@ -502,7 +578,12 @@ Widget build(BuildContext context) {
                         context,
                         Icons.water_drop,
                         'Sounds',
-                        const SoundsScreen(),
+                        SoundsScreen(
+                          playingSounds: _playingSounds,
+                          volumes: _soundVolumes,
+                          onToggleSound: _toggleSound,
+                          onVolumeChanged: _changeSoundVolume,
+                        ),
                       ),
 
                       _navItem(
