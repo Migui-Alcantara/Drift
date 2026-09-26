@@ -20,90 +20,108 @@ class TodoScreen extends StatefulWidget {
 }
 
 class _TodoScreenState extends State<TodoScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _dragHandle(),
+@override
+Widget build(BuildContext context) {
+  return SafeArea(
+    child: Column(
+      children: [
+        // Fixed header
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+          child: Column(
+            children: [
+              _dragHandle(),
 
-            const SizedBox(height: 16),
+              const SizedBox(height: 16),
 
-            const Text(
-              'To-do',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'To-do',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
+
+              const SizedBox(height: 20),
+            ],
+          ),
+        ),
+
+        // Scrollable task list
+        Expanded(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                if (widget.tasks.isEmpty)
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    child: Center(
+                      child: Text(
+                        'No tasks yet.',
+                        style: TextStyle(
+                          color: Colors.white54,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  )
+                else
+                  ...List.generate(
+                    widget.tasks.length,
+                    (index) => _todoRow(index),
+                  ),
+
+                const SizedBox(height: 16),
+              ],
             ),
+          ),
+        ),
 
-            const SizedBox(height: 20),
+        // Fixed add-task button
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+          child: GestureDetector(
+            onTap: () async {
+              await widget.onAdd();
+              setState(() {});
+            },
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: const Color(0xFF0F1117),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: const Row(
+                children: [
+                  Icon(
+                    Icons.add,
+                    color: Color(0xFFA78BFA),
+                  ),
 
-            if (widget.tasks.isEmpty)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                child: Center(
-                  child: Text(
-                    'No tasks yet.',
+                  SizedBox(width: 12),
+
+                  Text(
+                    'Add a new task...',
                     style: TextStyle(
-                      color: Colors.white54,
+                      color: Colors.white70,
                       fontSize: 14,
                     ),
                   ),
-                ),
-              )
-            else
-              ...List.generate(
-                widget.tasks.length,
-                (index) => _todoRow(index),
-              ),
-
-            const SizedBox(height: 4),
-
-            GestureDetector(
-              onTap: () async {
-                await widget.onAdd();
-                setState(() {});
-                },
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF0F1117),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: const Row(
-                  children: [
-                    Icon(
-                      Icons.add,
-                      color: Color(0xFFA78BFA),
-                    ),
-
-                    SizedBox(width: 12),
-
-                    Text(
-                      'Add a new task...',
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
+                ],
               ),
             ),
-
-            const SizedBox(height: 16),
-          ],
+          ),
         ),
-      ),
-    );
-  }
+      ],
+    ),
+  );
+}
 
   Widget _dragHandle() {
     return Center(

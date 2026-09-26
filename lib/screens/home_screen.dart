@@ -5,6 +5,7 @@ import 'sounds_screen.dart';
 import 'music_screen.dart';
 import 'todo_screen.dart';
 import '../data/todo_task.dart';
+import '../data/scene.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,6 +21,8 @@ List<TodoTask> _tasks = [
   TodoTask(text: 'Finish Activity 3')
 ];
 
+String _selectedScene = 'Aurora Night';
+
 void _toggleTask(int index) {
   setState(() {
     _tasks[index].completed = !_tasks[index].completed;
@@ -30,6 +33,18 @@ void _deleteTask(int index) {
   setState(() {
     _tasks.removeAt(index);
   });
+}
+
+void _selectScene(String scene) {
+  setState(() {
+    _selectedScene = scene;
+  });
+}
+
+Scene _getSelectedScene() {
+  return scenes.firstWhere(
+    (scene) => scene.name == _selectedScene,
+  );
 }
 
     Future<void> _addTask() async {
@@ -295,205 +310,230 @@ void _deleteTask(int index) {
     });
   }
 
-  void _openPanel(
-    BuildContext context,
-    Widget screen,
-  ) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: const Color(0xFF1E2130),
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(24),
-        ),
+void _openPanel(BuildContext context, Widget screen) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: const Color(0xFF1E2130),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(24),
       ),
-      builder: (context) {
-        return screen;
-      },
-    );
-  }
+    ),
+    builder: (context) {
+      return FractionallySizedBox(
+        heightFactor: 0.55,
+        child: screen,
+      );
+    },
+  );
+}
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF0F1117),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              // Top information
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Date and current song
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        _formattedDateTime(),
-                        style: const TextStyle(
-                          color: Colors.white70,
-                          fontSize: 12,
-                        ),
-                      ),
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: Stack(
+      children: [
+        // Selected scene background
+        Positioned.fill(
+          child: Image.asset(
+            _getSelectedScene().image,
+            fit: BoxFit.cover,
+          ),
+        ),
 
-                      const SizedBox(height: 8),
+        // Dark overlay so text stays readable
+        Positioned.fill(
+          child: Container(
+            color: Colors.black.withOpacity(0.25),
+          ),
+        ),
 
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.music_note,
-                            color: Colors.white70,
-                            size: 16,
-                          ),
-                          const SizedBox(width: 4),
-                          const Text(
-                            'Polaroids of Summer',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-
-                  // Pomodoro timer
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          SizedBox(
-                            width: 140,
-                            height: 140,
-                            child: CircularProgressIndicator(
-                              value: _timerProgress(),
-                              strokeWidth: 8,
-                              backgroundColor: Colors.white12,
-                              valueColor:
-                                  const AlwaysStoppedAnimation<Color>(
-                                Color(0xFFA78BFA),
-                              ),
-                            ),
-                          ),
-
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                onPressed: _toggleTimer,
-                                icon: Icon(
-                                  _isRunning
-                                      ? Icons.pause
-                                      : Icons.play_arrow,
-                                ),
-                                color: Colors.white,
-                                iconSize: 20,
-                              ),
-
-                              Text(
-                                _formattedTimer(),
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-
-                              Text(
-                                _isWorking ? 'Working' : 'Break',
-                                style: const TextStyle(
-                                  color: Colors.white70,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 4),
-
-                      Text(
-                        '$_currentSession/$_totalSessions',
-                        style: const TextStyle(
-                          color: Colors.white70,
-                          fontSize: 12,
-                        ),
-                      ),
-
-                      const SizedBox(height: 4),
-
-                      IconButton(
-                        onPressed: _resetTimer,
-                        icon: const Icon(Icons.refresh),
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-
-              const Spacer(),
-
-              // Bottom navigation
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 12,
-                  horizontal: 8,
-                ),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF1E2130),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+        // Main content
+        SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                // Top information
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _navItem(
-                      context,
-                      Icons.landscape,
-                      'Scenes',
-                      const ScenesScreen(),
+                    // Date and current song
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          _formattedDateTime(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                          ),
+                        ),
+
+                        const SizedBox(height: 8),
+
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.music_note,
+                              color: Colors.white,
+                              size: 16,
+                            ),
+                            const SizedBox(width: 4),
+                            const Text(
+                              'Polaroids of Summer',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    _navItem(
-                      context,
-                      Icons.water_drop,
-                      'Sounds',
-                      const SoundsScreen(),
-                    ),
-                    _navItem(
-                      context,
-                      Icons.music_note,
-                      'Music',
-                      const MusicScreen(),
-                    ),
-                    _navItem(
-                      context,
-                      Icons.check_box,
-                      'To-do',
-                      TodoScreen(
-                        tasks: _tasks,
-                        onToggle: _toggleTask,
-                        onDelete: _deleteTask,
-                        onAdd: _addTask,
-                      ),
+
+                    // Pomodoro timer
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            SizedBox(
+                              width: 140,
+                              height: 140,
+                              child: CircularProgressIndicator(
+                                value: _timerProgress(),
+                                strokeWidth: 8,
+                                backgroundColor: Colors.white24,
+                                valueColor:
+                                    const AlwaysStoppedAnimation<Color>(
+                                  Color(0xFFA78BFA),
+                                ),
+                              ),
+                            ),
+
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  onPressed: _toggleTimer,
+                                  icon: Icon(
+                                    _isRunning
+                                        ? Icons.pause
+                                        : Icons.play_arrow,
+                                  ),
+                                  color: Colors.white,
+                                  iconSize: 20,
+                                ),
+
+                                Text(
+                                  _formattedTimer(),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+
+                                Text(
+                                  _isWorking ? 'Working' : 'Break',
+                                  style: const TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+
+                        const SizedBox(height: 4),
+
+                        Text(
+                          '$_currentSession/$_totalSessions',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                          ),
+                        ),
+
+                        const SizedBox(height: 4),
+
+                        IconButton(
+                          onPressed: _resetTimer,
+                          icon: const Icon(Icons.refresh),
+                          color: Colors.white,
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ),
-            ],
+
+                const Spacer(),
+
+                // Bottom navigation
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12,
+                    horizontal: 8,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1E2130).withOpacity(0.9),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _navItem(
+                        context,
+                        Icons.landscape,
+                        'Scenes',
+                        ScenesScreen(
+                          selectedScene: _selectedScene,
+                          onSceneSelected: _selectScene,
+                        ),
+                      ),
+
+                      _navItem(
+                        context,
+                        Icons.water_drop,
+                        'Sounds',
+                        const SoundsScreen(),
+                      ),
+
+                      _navItem(
+                        context,
+                        Icons.music_note,
+                        'Music',
+                        const MusicScreen(),
+                      ),
+
+                      _navItem(
+                        context,
+                        Icons.check_box,
+                        'To-do',
+                        TodoScreen(
+                          tasks: _tasks,
+                          onToggle: _toggleTask,
+                          onDelete: _deleteTask,
+                          onAdd: _addTask,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
-  }
+      ],
+    ),
+  );
+}
 
   Widget _navItem(
     BuildContext context,
