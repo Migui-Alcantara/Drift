@@ -1,24 +1,14 @@
-<!--
-  This is your project's front page. Replace every placeholder below.
-  It is the first thing your instructor and any future employer will read, and
-  the live link in it is how your project gets opened for grading.
-
-  New here? Read START-HERE.md first. Delete this comment when you are done.
--->
-
 # Drift
-[![Made with AI](https://img.shields.io/badge/Made_with-AI_assistance-blue)](AI-USAGE.md)
+
 > Drift is a calming productivity and focus app for users who want to relax, stay focused, and organize their tasks in one place.
-
-**Live demo:** https://migui-alcantara.github.io/Drift/ <!-- GitHub Pages is set up already; replace if you host elsewhere -->
-**Demo video:** `docs/demo.mp4` (link it here once it exists)
-**Course:** Applications Development and Emerging Technologies (6ADET), Holy Angel University
-**Author:** Miguel Luis M. Alcantara
-
-This repository lives in the author's own GitHub account and is public on
-purpose. There is no `student.json` here and there should not be one: see
-`docs/06-security-and-privacy.md` for what a public repo means for secrets and
-personal data.
+> **Live demo:** https://migui-alcantara.github.io/Drift/ <!-- GitHub Pages is set up already; replace if you host elsewhere -->
+> **Demo video:** `docs/demo.mp4` (link it here once it exists)
+> **Course:** Applications Development and Emerging Technologies (6ADET), Holy Angel University
+> **Author:** Miguel Luis M. Alcantara
+> This repository lives in the author's own GitHub account and is public on
+> purpose. There is no `student.json` here and there should not be one: see
+> `docs/06-security-and-privacy.md` for what a public repo means for secrets and
+> personal data.
 
 ---
 
@@ -28,28 +18,28 @@ Put two or three real screenshots at phone size in `docs/assets/`, then replace
 this paragraph with them:
 
 | Home | Scenes | To-do |
-| --- | --- | --- |
+| ---- | ------ | ----- |
+|      |        |       |
 | ![Home](docs/assets/home.png) | ![Scenes](docs/assets/scene.png) | ![To-do](docs/assets/todo.png) |
 
 A repo without screenshots reads as abandoned, whatever the code says.
 
 ## What it does
 
-Three to five bullets. What can a user actually do?
-
-- Provides a calming home screen designed for focus and productivity.
-- Allows users to navigate between scenes, ambient sounds, music, and a to-do list.
-- Provides separate screens for choosing and managing the different parts of a focus session.
-- Uses a simple, dark visual design intended to create a relaxing atmosphere.
+* Provides a calming home screen with a Pomodoro focus timer, selected scene, current music, and navigation to the main features.
+* Allows users to choose scenes and use ambient sounds such as Rain, Radio Noise, Birds, Wind, and Fireplace.
+* Allows users to play music with play/pause, previous, next, and volume controls, with the next track starting automatically when a song finishes.
+* Allows users to create, complete, and delete to-do tasks.
+* Uses a simple, dark visual design intended to create a relaxing atmosphere while working or studying.
 
 ## Built with
 
-| | |
-| --- | --- |
-| Framework | Flutter (Dart) |
-| State | `setState` / provider / riverpod (say which) |
-| Storage | shared_preferences |
-| Other packages | device_preview — used to preview and test the app across different device sizes and orientations |
+|                |                                                                                                                                                                |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework      | Flutter (Dart)                                                                                                                                                 |
+| State          | `setState`                                                                                                                                                     |
+| Storage        | `shared_preferences`                                                                                                                              |
+| Other packages | `audioplayers` — used for music and ambient sound playback; `device_preview` — used to preview and test the app across different device sizes and orientations |
 
 ## Running it yourself
 
@@ -68,33 +58,35 @@ If API keys or other secrets are needed in a future feature, they will be stored
 
 ## Privacy and secrets
 
-Drift is currently designed as a local single-user application and does not send personal data to an external service. Local data persistence is planned to use shared_preferences on the user's device. No real personal information is used in the app's sample data, screenshots, or demo materials.
+Drift is currently designed as a local single-user application and does not send personal data to an external service. The current application state is handled locally while the app is running, and no real personal information is used in the app's sample data, screenshots, or demo materials.
 
 ## Project documentation
 
-| Document | |
-| --- | --- |
-| [Proposal](docs/01-proposal.md) | the problem, the users, the scope |
-| [Mockup and wireframes](docs/02-mockup.md) | what it looks like, and the screen flow |
-| [Design system](docs/03-design-system.md) | colors, type, spacing, components |
-| [Weekly reports](docs/04-weekly-reports.md) | what happened each week |
-| [Demo video](docs/05-demo-video.md) | the recording and what it shows |
-| [Start here](START-HERE.md) | how this repo works (delete once you have read it) |
-| [Security and privacy](docs/06-security-and-privacy.md) | the checklist, filled in |
+| Document                                                |                                                    |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| [Proposal](docs/01-proposal.md)                         | the problem, the users, the scope                  |
+| [Mockup and wireframes](docs/02-mockup.md)              | what it looks like, and the screen flow            |
+| [Design system](docs/03-design-system.md)               | colors, type, spacing, components                  |
+| [Weekly reports](docs/04-weekly-reports.md)             | what happened each week                            |
+| [Demo video](docs/05-demo-video.md)                     | the recording and what it shows                    |
+| [Start here](START-HERE.md)                             | how this repo works (delete once you have read it) |
+| [Security and privacy](docs/06-security-and-privacy.md) | the checklist, filled in                           |
 
 ## Status and what is next
 
-The main layout and navigation structure of Drift have been implemented, including the Home, Scenes, Sounds, Music, and To-do sections.
+The main functionality of Drift has now been implemented, including the Home, Scenes, Sounds, Music, To-do, and Pomodoro timer features.
 
-The current version focuses on establishing the app's interface and screen structure. The next stages will focus on implementing the functionality behind these screens, including scene selection, sound and music playback, the focus timer, to-do interactions, and local data persistence.
+The current version includes scene selection, ambient sound playback with individual volume controls, music playback with previous and next controls, automatic next-track playback, music volume control, and to-do interactions.
 
-Known areas that still need implementation or testing include audio playback, persistence, and the remaining interactive features.
+The remaining work is to add persistent storage using shared_preferences, implement timer settings so users can customize the work and break durations, and further adjust the interface to more closely match the approved mockup. Final testing, documentation updates, and screenshots will also be completed before submission.
+
+The remaining work focuses on final testing, checking the implementation against the approved mockup, updating the remaining screenshots and documentation, and preparing the final project submission.
 
 ## Credits
 
-- Packages: see `pubspec.yaml`
-- Assets, icons, 3D models, sounds: name the author and the licence for each
-- People who helped: None.
+* Packages: see `pubspec.yaml`
+* Assets, icons, 3D models, sounds: assets used in the project were obtained from sources that allow free use; credits and licence information will be included where required
+* People who helped: None.
 
 ## AI use
 
