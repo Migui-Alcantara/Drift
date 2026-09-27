@@ -1,14 +1,10 @@
 # Drift
 
 > Drift is a calming productivity and focus app for users who want to relax, stay focused, and organize their tasks in one place.
-> **Live demo:** https://migui-alcantara.github.io/Drift/ <!-- GitHub Pages is set up already; replace if you host elsewhere -->
-> **Demo video:** `docs/demo.mp4` (link it here once it exists)
-> **Course:** Applications Development and Emerging Technologies (6ADET), Holy Angel University
-> **Author:** Miguel Luis M. Alcantara
-> This repository lives in the author's own GitHub account and is public on
-> purpose. There is no `student.json` here and there should not be one: see
-> `docs/06-security-and-privacy.md` for what a public repo means for secrets and
-> personal data.
+**Live demo:** https://migui-alcantara.github.io/Drift/
+**Demo video:** `docs/demo.mp4` (link it here once it exists)
+**Course:** Applications Development and Emerging Technologies (6ADET), Holy Angel University
+**Author:** Migui
 
 ---
 
@@ -20,6 +16,10 @@ this paragraph with them:
 | Home | Scenes | To-do |
 | ---- | ------ | ----- |
 |      |        |       |
+| Sounds | Music |
+| ------ | ----- |
+|        |       |
+
 | ![Home](docs/assets/home.png) | ![Scenes](docs/assets/scene.png) | ![To-do](docs/assets/todo.png) |
 
 A repo without screenshots reads as abandoned, whatever the code says.
