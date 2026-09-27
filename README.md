@@ -10,19 +10,13 @@
 
 ## Screenshots
 
-Put two or three real screenshots at phone size in `docs/assets/`, then replace
-this paragraph with them:
+| Home | Scenes | Sounds |
+| --- | --- | --- |
+| ![Home](docs/assets/home.png) | ![Scenes](docs/assets/scene.png) | ![Sounds](docs/assets/sounds.png) |
 
-| Home | Scenes | To-do |
-| ---- | ------ | ----- |
-|      |        |       |
-| Sounds | Music |
-| ------ | ----- |
-|        |       |
-
-| ![Home](docs/assets/home.png) | ![Scenes](docs/assets/scene.png) | ![To-do](docs/assets/todo.png) |
-
-A repo without screenshots reads as abandoned, whatever the code says.
+| Music | To-do |
+| --- | --- |
+| ![Music](docs/assets/music.png) | ![To-do](docs/assets/todo.png) |
 
 ## What it does
 
