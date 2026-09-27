@@ -1,5 +1,5 @@
 # Drift
-
+[![Made with AI](https://img.shields.io/badge/Made_with-AI_assistance-blue)](AI-USAGE.md)
 > Drift is a calming productivity and focus app for users who want to relax, stay focused, and organize their tasks in one place.
 
 * **Live demo:** https://migui-alcantara.github.io/Drift/
