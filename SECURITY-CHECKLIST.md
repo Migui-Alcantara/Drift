@@ -47,7 +47,7 @@
 | 21 | No student number, personal email, phone number or home address in the repository or in commit messages | Yes            | I checked the project content and did not add student numbers, phone numbers, home addresses, or personal email addresses to the application files. |
 | 22 | No classmate's personal data in the repository                                                          | Yes            | I checked the project content and sample data and found no classmates' personal information.                                                        |
 | 23 | Dependencies come from pub.dev, and `build/` and `.dart_tool/` are gitignored                           | Yes            | Flutter dependencies are declared in `pubspec.yaml`, and generated Flutter files and folders are excluded through `.gitignore`.                     |
-| 24 | Images, fonts and other assets are mine, licensed, or credited                                          | Yes            | The project assets were selected for use in the application and are kept as project assets rather than containing personal data.                    |
+| 24 | Images, fonts and other assets are mine, licensed, or credited                                          | Yes            | The images, audio, and other assets used in Drift were obtained from sources that allow free use for projects.                    |
 | 25 | Repository visibility is deliberate, and I checked it after my last push                                | Yes            | The Drift repository is intentionally public for the final project and deployment, and I checked the repository after pushing the latest changes.   |
 
 ## Anything I found and fixed
