@@ -2,10 +2,10 @@
 
 > Drift is a calming productivity and focus app for users who want to relax, stay focused, and organize their tasks in one place.
 
-**Live demo:** https://migui-alcantara.github.io/Drift/
-**Demo video:** `docs/demo.mp4` (link it here once it exists)
-**Course:** Applications Development and Emerging Technologies (6ADET), Holy Angel University
-**Author:** Migui
+* **Live demo:** https://migui-alcantara.github.io/Drift/
+* **Demo video:** `docs/demo.mp4` (link it here once it exists)
+* **Course:** Applications Development and Emerging Technologies (6ADET), Holy Angel University
+* **Author:** Migui
 
 ---
 
@@ -72,8 +72,6 @@ Drift is currently designed as a local single-user application and does not send
 The main functionality of Drift has now been implemented, including the Home, Scenes, Sounds, Music, To-do, and Pomodoro timer features.
 
 The current version includes scene selection, ambient sound playback with individual volume controls, music playback with previous and next controls, automatic next-track playback, music volume control, and to-do interactions.
-
-The remaining work is to add persistent storage using shared_preferences, implement timer settings so users can customize the work and break durations, and further adjust the interface to more closely match the approved mockup. Final testing, documentation updates, and screenshots will also be completed before submission.
 
 The remaining work focuses on final testing, checking the implementation against the approved mockup, updating the remaining screenshots and documentation, and preparing the final project submission.
 
