@@ -79,7 +79,7 @@
 * Continued using `shared_preferences` as the planned local storage solution because the application needs to retain user tasks, timer settings, and preferences between sessions.
 * Updated the README alongside development so that the documentation reflects the actual state of the application.
 
-**Hours spent, roughly:** 8–10 hours
+**Hours spent, roughly:** 10–12 hours
 
 ## **Next week I will:**
 
