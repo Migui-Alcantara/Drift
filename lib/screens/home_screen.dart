@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'scenes_screen.dart';
 import 'sounds_screen.dart';
 import 'music_screen.dart';
@@ -20,7 +22,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
+  // ------------------------------------------------------------
   // Loading gate (prevents a flash of default scene/tasks)
+  // ------------------------------------------------------------
+
   bool _isLoaded = false;
 
   // Bumped on every setState so an open bottom sheet rebuilds with fresh values.
@@ -42,35 +47,54 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     _refreshSheet = true;
   }
 
+  // ------------------------------------------------------------
   // To-do
+  // ------------------------------------------------------------
+
   List<TodoTask> _tasks = [
     TodoTask(text: 'Study Chapter 4'),
     TodoTask(text: 'Review notes for exam'),
     TodoTask(text: 'Finish Activity 3'),
   ];
 
+  // ------------------------------------------------------------
   // Ambient sounds
+  // ------------------------------------------------------------
+
   final Set<String> _playingSounds = {};
   final Map<String, double> _soundVolumes = {};
   final Map<String, AudioPlayer> _soundPlayers = {};
 
+  // ------------------------------------------------------------
   // Music
+  // ------------------------------------------------------------
+
   MusicTrack? _currentTrack;
   AudioPlayer? _musicPlayer;
   bool _isMusicPlaying = false;
   double _musicVolume = 0.5;
   int _currentTrackIndex = 0;
 
+  // ------------------------------------------------------------
   // Scene
+  // ------------------------------------------------------------
+
   String _selectedScene = 'Aurora Night';
 
-
+  // ------------------------------------------------------------
   // Date and time
+  // ------------------------------------------------------------
+
   late DateTime _currentTime;
   Timer? _clockTimer;
 
+  // ------------------------------------------------------------
   // Pomodoro timer
+  // ------------------------------------------------------------
+
   Timer? _pomodoroTimer;
+  final AudioPlayer _alarmPlayer = AudioPlayer();
+  static const String _alarmSound = 'audio/alarmsound.mp3';
   int _remainingSeconds = 25 * 60;
   bool _isWorking = true; // Work = true, Break = false
   bool _isRunning = false;
@@ -80,8 +104,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   final int _workMinutes = 25;
   final int _breakMinutes = 5;
 
-
+  // ------------------------------------------------------------
   // SharedPreferences keys
+  // ------------------------------------------------------------
+
   static const String _sceneKey = 'selectedScene';
   static const String _tasksKey = 'tasks';
 
@@ -92,7 +118,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   static const String _soundVolumesKey = 'soundVolumes';
   static const String _playingSoundsKey = 'playingSounds';
 
+  // ------------------------------------------------------------
   // Load saved data
+  // ------------------------------------------------------------
+
   Future<void> _loadSavedData() async {
     bool shouldPlayMusic = true;
     List<String> soundsToRestore = [];
@@ -205,7 +234,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     }
   }
 
+  // ------------------------------------------------------------
   // Save helpers
+  // ------------------------------------------------------------
+
   Future<void> _saveSelectedScene() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_sceneKey, _selectedScene);
@@ -411,6 +443,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     if (player != null) {
       await player.setVolume(volume);
     }
+
     await _saveSoundVolumes();
   }
 
@@ -509,7 +542,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     controller.dispose();
   }
 
-
   // Lifecycle
   @override
   void initState() {
@@ -544,6 +576,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     }
 
     _musicPlayer?.dispose();
+    _alarmPlayer.dispose();
     _uiVersion.dispose();
 
     super.dispose();
@@ -617,8 +650,19 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     }
   }
 
+  Future<void> _playAlarm() async {
+    try {
+      await _alarmPlayer.stop();
+      await _alarmPlayer.play(AssetSource(_alarmSound));
+    } catch (_) {
+      // If the asset is missing or playback fails, just skip the sound.
+    }
+  }
+
   void _moveToNextPhase() {
     _pomodoroTimer?.cancel();
+
+    _playAlarm();
 
     setState(() {
       if (_isWorking) {
@@ -822,7 +866,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                     ),
                                   ),
                                   Text(
-                                    _isWorking ? 'Working' : 'Break',
+                                    !_isRunning
+                                        ? 'Paused'
+                                        : (_isWorking ? 'Working' : 'Break'),
                                     style: const TextStyle(
                                       color: Colors.white70,
                                       fontSize: 12,
