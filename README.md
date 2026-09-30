@@ -63,7 +63,7 @@ flutter pub get
 flutter run -d web-server --web-port 8080
 ```
 
-Then open http://localhost:8080. Requires Flutter 3.44.7
+Then open http://localhost:8080. Requires Flutter 3.44.7 or more recent
 
 ### Environment variables
 
