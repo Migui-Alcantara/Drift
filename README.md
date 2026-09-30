@@ -30,7 +30,6 @@
   <tr>
     <td><img src="docs/assets/music.png" width="250"></td>
     <td><img src="docs/assets/todo.png" width="250"></td>
-    <td></td>
   </tr>
 </table>
 
