@@ -11,13 +11,28 @@
 
 ## Screenshots
 
-| Home | Scenes | Sounds |
-| --- | --- | --- |
-| ![Home](docs/assets/home.png) | ![Scenes](docs/assets/scene.png) | ![Sounds](docs/assets/sounds.png) |
-
-| Music | To-do | |
-| --- | --- | --- |
-| ![Music](docs/assets/music.png) | ![To-do](docs/assets/todo.png) | |
+<table>
+  <tr>
+    <td align="center">Home</td>
+    <td align="center">Scenes</td>
+    <td align="center">Sounds</td>
+  </tr>
+  <tr>
+    <td><img src="docs/assets/home.png" width="250"></td>
+    <td><img src="docs/assets/scene.png" width="250"></td>
+    <td><img src="docs/assets/sounds.png" width="250"></td>
+  </tr>
+  <tr>
+    <td align="center">Music</td>
+    <td align="center">To-do</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><img src="docs/assets/music.png" width="250"></td>
+    <td><img src="docs/assets/todo.png" width="250"></td>
+    <td></td>
+  </tr>
+</table>
 
 ## What it does
 
