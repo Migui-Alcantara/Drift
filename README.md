@@ -13,23 +13,26 @@
 
 <table>
   <tr>
-    <td align="center">Home</td>
-    <td align="center">Scenes</td>
-    <td align="center">Sounds</td>
+    <td align="center" colspan="2">Home</td>
+    <td align="center" colspan="2">Scenes</td>
+    <td align="center" colspan="2">Sounds</td>
   </tr>
   <tr>
-    <td><img src="docs/assets/home.png" width="250"></td>
-    <td><img src="docs/assets/scene.png" width="250"></td>
-    <td><img src="docs/assets/sounds.png" width="250"></td>
+    <td align="center" colspan="2"><img src="docs/assets/home.png" width="250"></td>
+    <td align="center" colspan="2"><img src="docs/assets/scene.png" width="250"></td>
+    <td align="center" colspan="2"><img src="docs/assets/sounds.png" width="250"></td>
   </tr>
   <tr>
-    <td align="center">Music</td>
-    <td align="center">To-do</td>
-    <td></td>
+    <td colspan="1"></td>
+    <td align="center" colspan="2">Music</td>
+    <td align="center" colspan="2">To-do</td>
+    <td colspan="1"></td>
   </tr>
   <tr>
-    <td><img src="docs/assets/music.png" width="250"></td>
-    <td><img src="docs/assets/todo.png" width="250"></td>
+    <td colspan="1"></td>
+    <td align="center" colspan="2"><img src="docs/assets/music.png" width="250"></td>
+    <td align="center" colspan="2"><img src="docs/assets/todo.png" width="250"></td>
+    <td colspan="1"></td>
   </tr>
 </table>
 
