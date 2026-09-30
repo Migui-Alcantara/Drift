@@ -41,13 +41,100 @@ ChatGPT provided example Flutter code and suggested organizing the screens into 
 I kept the general file structure and some of the basic Flutter widget patterns.
 
 **What I changed:**  
-I changed a bit of the content and styling to match my own Drift mockup and design system but honestly it was good as it is.
+I changed a bit of the content and styling to match my own Drift mockup and design system but kept mostly the general structure of it.
 
 **Commit:**  
 [Updated Drift each screen](https://github.com/Migui-Alcantara/Drift/commit/afffe922d5ba02dc297ec1322f11b928df164f64)
 
 
 ---
+
+### 3. To-do list implementation
+
+**Date:** September 25, 2026
+**Tool:** ChatGPT
+
+**What I asked for:**
+Help implementing the To-do list feature for Drift based on my mockup, including adding tasks, marking tasks as completed, and deleting tasks.
+
+**What it gave back:**
+ChatGPT provided Flutter code for creating a To-do list with task objects, text input for adding new tasks, checkboxes for completing tasks, and delete buttons for removing tasks.
+
+**What I kept:**
+I kept the general structure for the task list and the basic add, complete, and delete functionality.
+
+**What I changed:**
+I adapted the code to match my Drift design and connected the To-do list to the existing HomeScreen and bottom-sheet navigation.
+
+**Commit:**
+[Implement functional todo list](https://github.com/Migui-Alcantara/Drift/commit/3c5f63ac68210924ab2fb7fec2d6f24bdac6572c)
+
+---
+
+### 4. Ambient sounds and audio playback
+
+**Date:** September 26, 2026
+**Tool:** ChatGPT
+
+**What I asked for:**
+Help implementing the Sounds panel so Drift could play ambient sounds from local audio assets, with multiple sounds playing at the same time and individual volume controls.
+
+**What it gave back:**
+ChatGPT suggested using the `audioplayers` package and creating separate `AudioPlayer` instances for the ambient sounds. It also provided the structure for looping sounds and controlling their volume with sliders.
+
+**What I kept:**
+I kept the `audioplayers` approach, the separate players for each sound, looping playback, and individual volume controls.
+
+**What I changed:**
+I adapted the code to use my own ambient sound data and audio files, including Rain, Radio Noise, Birds, Wind, and Fireplace. I also connected the controls to the existing Drift interface.
+
+**Commit:**
+[Implement ambient sounds](https://github.com/Migui-Alcantara/Drift/commit/c2f6273ff87fdec7a63b7d55adb371d7e5c121c8)
+
+---
+
+### 5. Saving user settings and app state
+
+**Date:** September 28, 2026
+**Tool:** Claude
+
+**What I asked for:**
+Help making Drift remember user changes after closing and reopening the app, including the selected scene, to-do tasks, music settings, and ambient sound settings.
+
+**What it gave back:**
+Claude suggested using the `shared_preferences` package to store simple app settings and provided code for saving and loading the different pieces of state.
+
+**What I kept:**
+I kept `shared_preferences` because the information being saved was simple app state and did not require a full database.
+
+**What I changed:**
+I adapted the saved values to Drift's actual features. The app now saves the selected scene, to-do tasks, music track, music volume, music playing state, ambient sound volumes, and currently playing ambient sounds.
+
+**Commit:**
+[Added persistence to sounds, tasks, scene, and music settings](https://github.com/Migui-Alcantara/Drift/commit/ae1e52405c9b5fbba812a4e47447a67f9c8f4552)
+
+---
+
+### 6. Music restart and playback behavior
+
+**Date:** September 28, 2026
+**Tool:** ChatGPT
+
+**What I asked for:**
+Help fixing the music behavior when restarting Drift. I wanted the selected music and playback state to be remembered, but I did not want the exact playback position to be saved. I also needed to prevent multiple copies of the same music from playing after restarting the app.
+
+**What it gave back:**
+ChatGPT suggested stopping and disposing of the existing `AudioPlayer` before creating a new one and starting the saved track from the beginning. It also separated the saved music state from the playback position.
+
+**What I kept:**
+I kept the approach of saving the selected track and whether music was playing, while intentionally not saving the playback position.
+
+**What I changed:**
+I adapted the music functions so that a normal app restart starts the saved track from the beginning and disposes of the previous player before starting a new one. I tested the behavior by stopping and running the Flutter app again.
+
+**Commit:**
+[Added persistence to sounds, tasks, scene, and music settings](https://github.com/Migui-Alcantara/Drift/commit/ae1e52405c9b5fbba812a4e47447a67f9c8f4552)
+
 
 ## 2. Where the AI got it wrong (25 points)
 
