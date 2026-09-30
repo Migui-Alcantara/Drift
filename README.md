@@ -15,9 +15,9 @@
 | --- | --- | --- |
 | ![Home](docs/assets/home.png) | ![Scenes](docs/assets/scene.png) | ![Sounds](docs/assets/sounds.png) |
 
-| Music | To-do |
-| --- | --- |
-| ![Music](docs/assets/music.png) | ![To-do](docs/assets/todo.png) |
+| Music | To-do | |
+| --- | --- | --- |
+| ![Music](docs/assets/music.png) | ![To-do](docs/assets/todo.png) | |
 
 ## What it does
 
