@@ -138,15 +138,59 @@ I adapted the music functions so that a normal app restart starts the saved trac
 
 ## 2. Where the AI got it wrong (25 points)
 
-In progress...
+### 1. Incorrect `pubspec.yaml` asset structure
 
-Three times the AI gave you something wrong, unsafe, out of date, or just worse
-than what you did instead. For each one: what it gave you, what was wrong with
-it, what you did instead, and the commit link.
+**What the AI gave me:**
+The AI initially gave me an incorrect `pubspec.yaml` structure for the Flutter assets. It treated the asset path as a single value instead of putting the asset folders inside an asset list.
 
-This section is worth real points because it is the hard part. Taking good code
-is not a skill. Catching bad code is. If you write that the AI was never wrong,
-this section scores zero, so do not be tempted.
+**What was wrong with it:**
+Flutter gave me the error `Expected "assets" to be a list, but got assets/images/ (String).` This meant the project could not properly load the assets using the suggested configuration.
+
+**What I did instead:**
+I changed the configuration so that `assets` was a list containing the image folder:
+
+```yaml
+flutter:
+  assets:
+    - assets/images/
+```
+
+After changing it, Flutter accepted the configuration and the assets loaded correctly.
+
+**Commit:**
+[Implement functional scenes and fixed todo layout](https://github.com/Migui-Alcantara/Drift/commit/fcc6a6ded3a557756970277f441754fedcfc9334#diff-8b7e9df87668ffa6a04b32e1769a33434999e54ae081c52e5d943c541d4c0d25)
+
+---
+
+### 2. Bottom sheet did not match the approved mockup
+
+**What the AI gave me:**
+The AI initially created the panel content in a way that took up most or all of the screen when opened.
+
+**What was wrong with it:**
+This did not match my approved Drift mockup. The Home screen was supposed to remain visible behind the panel so the user could still see the selected scene, timer, and date. The panel also needed to behave more like a bottom sheet instead of replacing the whole screen.
+
+**What I did instead:**
+I changed the bottom sheet to use a fixed portion of the screen with `FractionallySizedBox`, using a height factor of `0.55`. I also adjusted the panel so its content could scroll while the rest of the Home screen remained visible underneath.
+
+**Commit:**
+[Update Drift welcome and home screens](https://github.com/Migui-Alcantara/Drift/commit/af314e2616dddca4d4404e7c7f9d7353165e8e53#diff-935e56a557f0ab902a679f47de66345d9f47058bccb96f870e6383d19e2c86dd)
+
+---
+
+### 3. To-do changes did not update immediately
+
+**What the AI gave me:**
+The initial To-do implementation provided by the AI did not properly refresh the open bottom sheet after a task was checked, added, or deleted.
+
+**What was wrong with it:**
+When I interacted with a task, the change was not immediately visible in the open To-do panel. For example, checking a task would only show the updated state after closing and reopening the panel.
+
+**What I did instead:**
+I changed the To-do panel and its callback/state handling so that changes were sent back to the `HomeScreen` and the open panel refreshed immediately. This allowed adding, completing, and deleting tasks without needing to close and reopen the panel.
+
+**Commit:**
+[Implement functional todo list](https://github.com/Migui-Alcantara/Drift/commit/3c5f63ac68210924ab2fb7fec2d6f24bdac6572c)
 
 ## 3. Who wrote what (30 points)
 
