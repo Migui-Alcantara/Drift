@@ -194,22 +194,40 @@ I changed the To-do panel and its callback/state handling so that changes were s
 
 ## 3. Who wrote what (30 points)
 
-In progress...
+### Parts I wrote myself
 
-This is the 80 percent rule, made checkable.
+#### 1. Data files
 
-Name the parts of the project **you** wrote yourself. For each one give the file,
-the commit, and a short explanation in your own words: what it does, and why it
-is built that way. A widget you built yourself, or the place your state actually lives is a good
-example of the kind of thing to pick.
+**Files:** `lib/data/scene.dart`, `lib/data/ambient_sound.dart`, and the other files in `lib/data/`
+**Commit:** [lib/data/todo_task.dart](https://github.com/Migui-Alcantara/Drift/commit/3c5f63ac68210924ab2fb7fec2d6f24bdac6572c)
+            [lib/data/music_track.dart](https://github.com/Migui-Alcantara/Drift/commit/ad6bda087f9a566d685b6a956c7787a1a859c71d)
+            [lib/data/ambient_sound.dart](https://github.com/Migui-Alcantara/Drift/commit/c2f6273ff87fdec7a63b7d55adb371d7e5c121c8)
+            [lib/data/scene.dart](https://github.com/Migui-Alcantara/Drift/commit/fcc6a6ded3a557756970277f441754fedcfc9334)
 
-Then do the same for the one piece of AI-written code you understand best.
+I wrote the data files myself to keep the information used by Drift organized separately from the screen code. For example, the scene data contains the available scene information, while the ambient sound data contains the names and audio paths for the sounds used by the app. I built them this way so the screen files would not have to contain all of the app's data directly.
 
-What earns full marks here is the **explanation**, not who typed it. "The AI
-wrote this and here is exactly what it does and why we kept it" is a strong
-answer. A list of filenames with no explanation is a weak one, no matter who
-wrote them.
+#### 2. Pomodoro timer logic
 
-If you cannot point at any meaningful part of the project as your own, this
-section scores zero, and you cannot reach the 75 points the badge needs.
+**File:** `lib/screens/home_screen.dart`
+**Commit:** [Implement Pomodoro timer cycle](https://github.com/Migui-Alcantara/Drift/commit/511ca58b7a14c243cfcf7971a8bbf66c7dccd023)
+
+I wrote the Pomodoro timer logic myself inside the Home screen. It keeps track of the remaining time, whether the timer is running, the current work or break period, and the number of completed sessions. It also handles starting, pausing, resetting, and automatically switching between work and break periods. I kept this logic in the Home screen because the timer is one of the main parts of the Home interface and its current state needs to be displayed there.
+
+#### 3. Scenes screen
+
+**File:** `lib/screens/scenes_screen.dart`
+**Commit:** [Implement functional scenes and fixed todo layout](https://github.com/Migui-Alcantara/Drift/commit/fcc6a6ded3a557756970277f441754fedcfc9334#diff-8b7e9df87668ffa6a04b32e1769a33434999e54ae081c52e5d943c541d4c0d25)
+
+I wrote the Scenes screen myself. It displays the available scenes and allows the user to select one. When a scene is selected, the selected scene is passed back to the Home screen so the background can change. I made it a separate screen/widget so the scene-selection interface would stay organized instead of putting all of the scene options directly into the Home screen.
+
+### AI-written code I understand
+
+#### Home screen integration
+
+**File:** `lib/screens/home_screen.dart`
+**Commit:** [home_screen.dart](https://github.com/Migui-Alcantara/Drift/commit/afffe922d5ba02dc297ec1322f11b928df164f64)
+
+A significant part of the Home screen was created with AI assistance, and I understand how the code works because I tested and modified it throughout the project. The Home screen brings together the different Drift features, including the selected scene, music, ambient sounds, to-do list, and Pomodoro timer.
+
+The AI-assisted parts helped connect these features and handle interactions between the Home screen and the bottom panels. I kept this general structure because it allowed the Home screen to act as the main interface while the Scenes, Sounds, Music, and To-do features could open as panels over it. I also changed the AI-generated code when it did not behave correctly, such as when state changes were not immediately reflected in an open panel and when music needed to be stopped and restarted correctly.
 
