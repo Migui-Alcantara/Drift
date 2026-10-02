@@ -99,7 +99,7 @@ The remaining work focuses on final testing, checking the implementation against
 
 * Packages: see `pubspec.yaml`
 * Assets, icons, 3D models, sounds: assets used in the project were obtained from sources that allow free use; credits and licence information will be included where required
-* People who helped: None.
+* AI tools: ChatGPT and Claude
 
 ## AI use
 
