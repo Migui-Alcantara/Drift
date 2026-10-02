@@ -200,10 +200,10 @@ I changed the To-do panel and its callback/state handling so that changes were s
 
 **Files:**
 
-* `lib/data/todo_task.dart` — [Commit](https://github.com/Migui-Alcantara/Drift/commit/3c5f63ac68210924ab2fb7fec2d6f24bdac6572c)
-* `lib/data/music_track.dart` — [Commit](https://github.com/Migui-Alcantara/Drift/commit/ad6bda087f9a566d685b6a956c7787a1a859c71d)
-* `lib/data/ambient_sound.dart` — [Commit](https://github.com/Migui-Alcantara/Drift/commit/c2f6273ff87fdec7a63b7d55adb371d7e5c121c8)
-* `lib/data/scene.dart` — [Commit](https://github.com/Migui-Alcantara/Drift/commit/fcc6a6ded3a557756970277f441754fedcfc9334)
+* `lib/data/todo_task.dart` - [Commit](https://github.com/Migui-Alcantara/Drift/commit/3c5f63ac68210924ab2fb7fec2d6f24bdac6572c)
+* `lib/data/music_track.dart` - [Commit](https://github.com/Migui-Alcantara/Drift/commit/ad6bda087f9a566d685b6a956c7787a1a859c71d)
+* `lib/data/ambient_sound.dart` - [Commit](https://github.com/Migui-Alcantara/Drift/commit/c2f6273ff87fdec7a63b7d55adb371d7e5c121c8)
+* `lib/data/scene.dart` - [Commit](https://github.com/Migui-Alcantara/Drift/commit/fcc6a6ded3a557756970277f441754fedcfc9334)
 
 I wrote the data files myself to keep the information used by Drift organized separately from the screen code. For example, the scene data contains the available scene information, while the ambient sound data contains the names and audio paths for the sounds used by the app. I built them this way so the screen files would not have to contain all of the app's data directly.
 
