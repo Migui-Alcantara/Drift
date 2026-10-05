@@ -12,15 +12,15 @@
 
 ## GitHub Actions
 
-| #  | Check                                                                                                   | Yes / No / N/A | Evidence                                                                                                                         |
-| -- | ------------------------------------------------------------------------------------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| 6  | No secret value is written literally in any workflow YAML file                                          | Yes            | I checked the GitHub Actions workflow and found no secret values written directly in the workflow.                               |
-| 7  | Secrets are stored in repository Actions secrets and read with `${{ secrets.NAME }}`                    | N/A            | The Drift workflow does not require any repository secrets.                                                                      |
-| 8  | No workflow step echoes, dumps or debug-prints a secret, and I opened a recent run's log to confirm     | Yes            | I checked the workflow and its build output and found no steps that print secret values.                                         |
-| 9  | If I build a signed APK: the keystore is a base64 secret decoded to a file at build time, never printed | N/A            | Drift is being deployed as a Flutter web application and does not build a signed APK.                                            |
-| 10 | Uploaded build artifacts contain no key file, keystore or generated config                              | N/A            | The Drift deployment does not require or upload signing keys, keystores, or secret configuration files.                          |
-| 11 | Third-party actions are pinned to a commit SHA, not a moveable tag                                      | N/A            | The current Drift workflow does not use third-party GitHub Actions that require pinned commit SHAs.                              |
-| 12 | Secret scanning and push protection are enabled on the repository                                       | N/A            | Drift does not contain credentials or sensitive secrets that require repository secret scanning for the application to function. |
+| #  | Check                                                                                                   | Yes / No / N/A | Evidence                                                                                                                               |
+| -- | ------------------------------------------------------------------------------------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| 6  | No secret value is written literally in any workflow YAML file                                          | Yes            | I checked the GitHub Actions workflow and found no secret values written directly in the workflow.                                     |
+| 7  | Secrets are stored in repository Actions secrets and read with `${{ secrets.NAME }}`                    | N/A            | The Drift workflow does not require any repository secrets.                                                                            |
+| 8  | No workflow step echoes, dumps or debug-prints a secret, and I opened a recent run's log to confirm     | Yes            | I checked the workflow and its build output and found no steps that print secret values.                                               |
+| 9  | If I build a signed APK: the keystore is a base64 secret decoded to a file at build time, never printed | N/A            | Drift is being deployed as a Flutter web application and does not build a signed APK.                                                  |
+| 10 | Uploaded build artifacts contain no key file, keystore or generated config                              | N/A            | The Drift deployment does not require or upload signing keys, keystores, or secret configuration files.                                |
+| 11 | Third-party actions are pinned to a commit SHA, not a moveable tag                                      | No             | The current Drift workflow uses third-party GitHub Actions with version tags rather than pinning each action to a specific commit SHA. |
+| 12 | Secret scanning and push protection are enabled on the repository                                       | Yes            | GitHub Secret scanning and Push protection are enabled for the Drift repository.                                                       |
 
 ## Backend and security rules
 
@@ -47,7 +47,7 @@
 | 21 | No student number, personal email, phone number or home address in the repository or in commit messages | Yes            | I checked the project content and did not add student numbers, phone numbers, home addresses, or personal email addresses to the application files. |
 | 22 | No classmate's personal data in the repository                                                          | Yes            | I checked the project content and sample data and found no classmates' personal information.                                                        |
 | 23 | Dependencies come from pub.dev, and `build/` and `.dart_tool/` are gitignored                           | Yes            | Flutter dependencies are declared in `pubspec.yaml`, and generated Flutter files and folders are excluded through `.gitignore`.                     |
-| 24 | Images, fonts and other assets are mine, licensed, or credited                                          | Yes            | The images, audio, and other assets used in Drift were obtained from sources that allow free use for projects.                    |
+| 24 | Images, fonts and other assets are mine, licensed, or credited                                          | Yes            | The images, audio, and other assets used in Drift were obtained from sources that allow free use for projects.                                      |
 | 25 | Repository visibility is deliberate, and I checked it after my last push                                | Yes            | The Drift repository is intentionally public for the final project and deployment, and I checked the repository after pushing the latest changes.   |
 
 ## Anything I found and fixed
