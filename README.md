@@ -3,7 +3,6 @@
 > Drift is a calming productivity and focus app for users who want to relax, stay focused, and organize their tasks in one place.
 
 * **Live demo:** https://migui-alcantara.github.io/Drift/
-* **Demo video:** `docs/demo.mp4` (link it here once it exists)
 * **Course:** Applications Development and Emerging Technologies (6ADET), Holy Angel University
 * **Author:** Migui
 
