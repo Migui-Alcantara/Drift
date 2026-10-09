@@ -1,38 +1,30 @@
 # Demo video
 
-**File:** `demo.mp4` in this folder, or the hosted link (see below)
-**Length:** aim for 3 to 5 minutes
-**Recorded on:** the device you used
+**File:** Video presentation provided through the **restricted Google Drive link in the Canvas submission comments**, not in the public GitHub repository.
+
+**Length:** **3–5 minutes**
+
+**Recorded on:** **PC**
 
 ## What it shows
 
-A short list, in order, so a viewer can skip to what they need:
+* **INTRODUCTION:**0:00 - What Drift is and who it helps.
+* **PROBLEM:**0:09 - How students can struggle to stay focused when they need to switch between separate apps for timers, music, and task management.
+* **APP DEMO:**0:41 - Home screen, Pomodoro timer, scene selection, ambient sounds, music player, and to-do list.
+* **TECH STACK:**2:10 - Flutter/Dart, shared preferences for saving app data, and audioplayers for audio playback.
+* **AI SEGMENT:**2:50 - How AI tools were used during development and how their suggestions were reviewed and modified.
+* **OWN CONTRIBUTIONS:**4:43 - Features and code implemented or modified as part of the project.
+* **CHALLENGES:**5:28 - Problems encountered during development and how they were resolved.
 
-- 0:00 what the app is and who it is for
-- 0:20 ...
-- 1:10 ...
 
-Cover, in this order: the main user journey end to end, anything that only works
-on a real device (camera, GPS, sensors), and the thing you are proudest of.
+Drift is a Flutter web application; it does not require camera, GPS, or other device-only demonstrations.
 
 ## Getting it into the repo
 
-GitHub **blocks any file over 100 MB** and warns over 50 MB, so compress before
-you commit:
+The presentation video is intentionally **not uploaded or linked in the public repository** to protect access to the recording. The instructor receives the restricted Google Drive link through the private Canvas submission comments.
 
-```bash
-ffmpeg -i raw.mp4 -vcodec libx264 -crf 28 -preset slow \
-       -vf scale=-2:720 -acodec aac -b:a 96k demo.mp4
-```
+The same restricted submission folder contains:
 
-Raise `-crf` (28 to 32) or drop to `-2:480` if it is still too large. If it still
-does not fit, attach it to a **GitHub Release** or upload it unlisted and link it
-here. Never commit the raw capture: git keeps it forever even after you delete
-it.
-
-## Before you record
-
-- Real data off the screen: no classmates' names, numbers, faces or messages.
-- Notifications off.
-- Sensible sample data, not "asdf".
-- One unbroken take per feature. Say what you are doing while you do it.
+* Video presentation
+* Presentation slides (PDF)
+* Square project image
