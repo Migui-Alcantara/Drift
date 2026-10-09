@@ -2,7 +2,7 @@
 
 **File:** Video presentation provided through the **restricted Google Drive link in the Canvas submission comments**, not in the public GitHub repository.
 
-**Length:** **3–5 minutes**
+**Length:** **6 minutes**
 
 **Recorded on:** **PC**
 
